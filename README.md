@@ -27,5 +27,5 @@ The `PoissonProcess` class simulates a Poisson process in terms of
     int eventsDelta = pp.events(delta); // delta-time interval
 
     // Get time for next event (inter-arrival time)
-    double t = pp.timeOfNextEvent();
+    double t = pp.timeForNextEvent();
      

@@ -1,12 +1,12 @@
 package poisson;
 
-public class Sample {
+public class SampleValues {
 
   private final String id;
   private int count;
   private double sum, sumSq, min, max;
   
-  Sample(String statsId) {
+  SampleValues(String statsId) {
     id = statsId;
     count = 0;
     sum = 0;
@@ -16,7 +16,7 @@ public class Sample {
 
   }
   
-  public void update(double v) {
+  public void add(double v) {
     count++;
     sum += v;
     sumSq += (v * v);
@@ -40,7 +40,7 @@ public class Sample {
     return count; 
   }
   
-  public double average() { 
+  public double mean() { 
     return sum / count; 
   }
   
@@ -49,17 +49,17 @@ public class Sample {
   }
    
   public double variance() { 
-    double u = average();
+    double u = mean();
     return u * u + (sumSq - 2 * u * sum)/count;
   }
   
   @Override
   public String toString() {
     return String.format("%s|count=%d|avg=%f|variance=%f|min=%f|max=%f",
-                         id(), count(), average(), variance(), min(), max());
+                         id(), count(), mean(), variance(), min(), max());
   }
   
-  public void mergeWith(Sample other) {
+  public void mergeWith(SampleValues other) {
     count += other.count;
     sum += other.sum;
     sumSq += other.sumSq;

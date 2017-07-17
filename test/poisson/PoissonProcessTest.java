@@ -12,16 +12,16 @@ public class PoissonProcessTest {
 
   private void testEvents(double lambda) {
     PoissonProcess pp = new PoissonProcess(lambda, new Random(0) );
-    Sample s = new Sample("Events / " + lambda);
+    SampleValues s = new SampleValues("Events / " + lambda);
 
     for (int i = 1; i <= SAMPLES; i++) {
       int e = pp.events();
-      s.update(e);
+      s.add(e);
     }
     // TODO: make choice of tol statistically sound (ad-hoc for now)
     double tol = lambda / 10;
     System.out.println(s);
-    assertEquals("mean", lambda, s.average(), tol);
+    assertEquals("mean", lambda, s.mean(), tol);
     assertEquals("variance", lambda, s.variance(), tol);
 
   }
@@ -58,18 +58,18 @@ public class PoissonProcessTest {
   
   private void testArrivalTimes(double lambda) {
     PoissonProcess pp = new PoissonProcess(lambda, new Random(0) );
-    Sample s = new Sample("Arrival Times / " + lambda);
+    SampleValues s = new SampleValues("Arrival Times / " + lambda);
 
     for (int i = 1; i <= SAMPLES; i++) {
       double t = pp.timeForNextEvent();
-      s.update(t);
+      s.add(t);
     }
 
     double invLambda = 1d / lambda;
     // TODO: make choice of tol statistically sound (ad-hoc for now)
     double tol = Math.pow(10, -Math.log10(lambda)) / lambda; 
     System.out.println(s.toString() + " " + tol);
-    assertEquals("mean", invLambda, s.average(), tol);
+    assertEquals("mean", invLambda, s.mean(), tol);
     assertEquals("variance", invLambda / lambda, s.variance(), tol );
   }
   

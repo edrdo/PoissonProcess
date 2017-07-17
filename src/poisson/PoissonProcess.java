@@ -55,7 +55,7 @@ public final class PoissonProcess {
   /**
    * Get time for next event. 
    * 
-   * @return
+   * @return A random inter-arrival time.
    */
   public double timeForNextEvent() {
     // The sequence of inter-arrival times are independent and have an exponential distribution with mean 1/lambda.

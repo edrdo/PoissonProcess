@@ -60,7 +60,7 @@ public final class PoissonProcess {
   public double timeForNextEvent() {
     // The sequence of inter-arrival times are independent and have an exponential distribution with mean 1/lambda.
     // To generate it we use the recipe in https://en.wikipedia.org/wiki/Exponential_distribution#Generating_exponential_variates
-    return - Math.log(rng.nextDouble()) / lambda;
+    return - Math.log(1.0 - rng.nextDouble()) / lambda;
   }
   
   /**
